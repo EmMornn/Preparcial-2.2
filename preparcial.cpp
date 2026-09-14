@@ -103,6 +103,61 @@ void aumentarCargas(
     }
 };
 
+void generarInforme(Elemento elementos[], int cantidad)
+{
+    int seguro = 0;
+    int precaucion = 0;
+    int riesgo = 0;
+    int sobrecarga = 0;
+
+    float sumaFactores = 0.0;
+
+    cout << endl;
+    cout << "     INFORME GENERAL   " << endl;
+    cout << endl;
+
+    for (int i = 0; i < cantidad; i++)
+    {
+        float cargaPromedio = (elementos[i].cargas[0] + elementos[i].cargas[1] + elementos[i].cargas[2]) / 3.0;
+
+        cout << endl;
+        cout << "Elemento " << i + 1 << ": " << endl;
+        cout << "Codigo: " << elementos[i].codigo << endl;
+        cout << "Nombre: " << elementos[i].nombre << endl;
+        cout << "Carga Promedio: " << cargaPromedio << endl;
+        cout << "Factor de Utilizacion: " << elementos[i].factor_utilizacion << endl;
+        cout << "Estado de Seguridad: " << elementos[i].estado_seguridad << endl;
+
+        if (elementos[i].estado_seguridad == "SEGURO")
+        {
+            seguro++;
+        }
+        else if (elementos[i].estado_seguridad == "PRECAUCION")
+        {
+            precaucion++;
+        }
+        else if (elementos[i].estado_seguridad == "RIESGO")
+        {
+            riesgo++;
+        }
+        else if (elementos[i].estado_seguridad == "SOBRECARGA")
+        {
+            sobrecarga++;
+        }
+        sumaFactores += elementos[i].factor_utilizacion;
+    }
+    cout << endl;
+    cout << "RESUMEN DE ESTADOS DE SEGURIDAD:" << endl;
+    cout << "  - SEGURO: " << seguro << endl;
+    cout << "  - PRECAUCION: " << precaucion << endl;
+    cout << "  - RIESGO: " << riesgo << endl;
+    cout << "  - SOBRECARGA: " << sobrecarga << endl;
+
+    float factorPromedio = sumaFactores / cantidad;
+    cout << "Factor de utilizacion promedio global: " << factorPromedio << endl;
+    cout << endl;
+};
+
 int main()
 {
     Elemento elementos[10];
@@ -179,5 +234,8 @@ int main()
     cout << "Factor de Utilizacion: " << masCritico->factor_utilizacion << endl;
     cout << "Estado de Seguridad: " << masCritico->estado_seguridad << endl;
 
+
+    generarInforme(elementos, n);
+    
     return 0;
 }
