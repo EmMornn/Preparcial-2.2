@@ -36,3 +36,24 @@ void registrarElementos(Elemento &elementos)
     cin >> elementos.capmax;
     cout << endl;
 };
+
+int main()
+{
+    Elemento elementos[10];
+    int n;
+    cout << endl;
+    do
+    {
+        cout << "Ingrese la cantidad de elementos que desea registrar (1-10):";
+        cin >> n;
+        if (n < 1 || n > 10)
+        {
+            cout << "Cantidad de elementos ingresados no valida, intente nuevamente" << endl;
+        }
+
+    } while (n < 1 || n > 10);
+
+    cout << "Cantidad registrada de : " << n << " elementos" << endl;
+
+    return 0;
+}
