@@ -93,6 +93,16 @@ Elemento *obtenerElementoCritico(Elemento elementos[], int cantidad)
     return critico;
 };
 
+void aumentarCargas(
+    Elemento &elemento, float porcentaje)
+{
+    float nCarga = 0;
+    for (int i = 0; i < 3; i++)
+    {
+        elemento.cargas[i] = elemento.cargas[i] * (1.0 + porcentaje / 100.0);
+    }
+};
+
 int main()
 {
     Elemento elementos[10];
@@ -126,6 +136,38 @@ int main()
 
     cout << endl;
     cout << "Elemento de mayor factor de Utilizacion: " << endl;
+    cout << endl;
+    cout << "Codigo: " << masCritico->codigo << endl;
+    cout << "Nombre: " << masCritico->nombre << endl;
+    cout << "Longitud: " << masCritico->longitud << endl;
+    cout << "Carga 1: " << masCritico->cargas[0] << endl;
+    cout << "Carga 2: " << masCritico->cargas[1] << endl;
+    cout << "Carga 3: " << masCritico->cargas[2] << endl;
+    cout << "Capacidad Maxima: " << masCritico->capmax << endl;
+    cout << "Factor de Utilizacion: " << masCritico->factor_utilizacion << endl;
+    cout << "Estado de Seguridad: " << masCritico->estado_seguridad << endl;
+
+    float porcentaje;
+    cout << endl;
+    cout << "Simulacion de Aumento de las Cargas " << endl;
+    cout << endl;
+    do
+    {
+        cout << "Ingrese el porcentaje deseado de incremento para el elemento critico: ";
+        cin >> porcentaje;
+        if (porcentaje < 0.00)
+        {
+            cout << "Porcentaje no valido, intente nuevamente" << endl;
+        }
+    } while (porcentaje < 0.00);
+
+    aumentarCargas(*masCritico, porcentaje);
+
+    calcularFactor(masCritico);
+    determinarSeguridad(*masCritico);
+
+    cout << endl;
+    cout << "Resultados actualizados el elemento: " << endl;
     cout << endl;
     cout << "Codigo: " << masCritico->codigo << endl;
     cout << "Nombre: " << masCritico->nombre << endl;
