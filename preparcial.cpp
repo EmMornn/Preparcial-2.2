@@ -110,6 +110,32 @@ int main()
     } while (n < 1 || n > 10);
 
     cout << "Cantidad registrada de : " << n << " elementos" << endl;
+    cout << endl;
+    for (int i = 0; i < n; i++)
+    {
+        cout << endl;
+        cout << "Registrando elemento " << i + 1 << ": " << endl;
+        registrarElementos(elementos[i]);
+
+        calcularFactor(&elementos[i]);
+
+        determinarSeguridad(elementos[i]);
+    };
+
+    Elemento *masCritico = obtenerElementoCritico(elementos, n);
+
+    cout << endl;
+    cout << "Elemento de mayor factor de Utilizacion: " << endl;
+    cout << endl;
+    cout << "Codigo: " << masCritico->codigo << endl;
+    cout << "Nombre: " << masCritico->nombre << endl;
+    cout << "Longitud: " << masCritico->longitud << endl;
+    cout << "Carga 1: " << masCritico->cargas[0] << endl;
+    cout << "Carga 2: " << masCritico->cargas[1] << endl;
+    cout << "Carga 3: " << masCritico->cargas[2] << endl;
+    cout << "Capacidad Maxima: " << masCritico->capmax << endl;
+    cout << "Factor de Utilizacion: " << masCritico->factor_utilizacion << endl;
+    cout << "Estado de Seguridad: " << masCritico->estado_seguridad << endl;
 
     return 0;
 }
