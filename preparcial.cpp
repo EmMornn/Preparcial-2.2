@@ -37,6 +37,21 @@ void registrarElementos(Elemento &elementos)
     cout << endl;
 };
 
+float calcularFactor(Elemento *elemento)
+{
+    float suma = 0;
+    float promedio = 0;
+    float f_utilizacion = 0;
+    for (int i = 0; i < 3; i++)
+    {
+        suma = suma + elemento->cargas[i];
+    }
+    promedio = suma / 3;
+    f_utilizacion = promedio / elemento->capmax;
+    elemento->factor_utilizacion = f_utilizacion;
+    return elemento->factor_utilizacion;
+};
+
 int main()
 {
     Elemento elementos[10];
