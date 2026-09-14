@@ -52,6 +52,30 @@ float calcularFactor(Elemento *elemento)
     return elemento->factor_utilizacion;
 };
 
+void determinarSeguridad(Elemento &elemento)
+{
+    if (elemento.factor_utilizacion >= 0.00 && elemento.factor_utilizacion < 0.50)
+    {
+        cout << "Estado: SEGURO" << endl;
+    }
+    else if (elemento.factor_utilizacion >= 0.50 && elemento.factor_utilizacion < 0.80)
+    {
+        cout << "Estado: PRECAUCION" << endl;
+    }
+    else if (elemento.factor_utilizacion >= 0.80 && elemento.factor_utilizacion < 1.00)
+    {
+        cout << "Estado: RIESGO" << endl;
+    }
+    else if (elemento.factor_utilizacion >= 1.00)
+    {
+        cout << "Estado: PRECAUCION" << endl;
+    }
+    else
+    {
+        cout << "Valor no identificado" << endl;
+    }
+};
+
 int main()
 {
     Elemento elementos[10];
