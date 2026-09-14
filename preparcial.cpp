@@ -9,7 +9,7 @@ struct Elemento
     float cargas[3];
     float capmax;
     float factor_utilizacion;
-    bool estado_seguridad;
+    string estado_seguridad;
 };
 
 void registrarElementos(Elemento &elementos)
@@ -57,23 +57,40 @@ void determinarSeguridad(Elemento &elemento)
     if (elemento.factor_utilizacion >= 0.00 && elemento.factor_utilizacion < 0.50)
     {
         cout << "Estado: SEGURO" << endl;
+        elemento.estado_seguridad == "Seguro";
     }
     else if (elemento.factor_utilizacion >= 0.50 && elemento.factor_utilizacion < 0.80)
     {
         cout << "Estado: PRECAUCION" << endl;
+        elemento.estado_seguridad == "Precaucion";
     }
     else if (elemento.factor_utilizacion >= 0.80 && elemento.factor_utilizacion < 1.00)
     {
         cout << "Estado: RIESGO" << endl;
+        elemento.estado_seguridad == "Riesgo";
     }
     else if (elemento.factor_utilizacion >= 1.00)
     {
-        cout << "Estado: PRECAUCION" << endl;
+        cout << "Estado: SOBRECARGA" << endl;
+        elemento.estado_seguridad == "Sobrecarga";
     }
     else
     {
         cout << "Valor no identificado" << endl;
     }
+};
+
+Elemento *obtenerElementoCritico(Elemento elementos[], int cantidad)
+{
+    Elemento *critico = &elementos[0];
+    for (int i = 1; i < cantidad - 1; i++)
+    {
+        if (elementos[i].factor_utilizacion > critico->factor_utilizacion)
+        {
+            critico = &elementos[i];
+        }
+    }
+    return critico;
 };
 
 int main()
