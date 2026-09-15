@@ -42,3 +42,28 @@ float calcularPromedio(Estacion *estacion)
     estacion->promedio_intensidad = promedio;
     return estacion->promedio_intensidad;
 };
+
+void evaluarAlerta(Estacion &estacion)
+{
+
+    if (estacion.promedio_intensidad >= 0.0 && estacion.promedio_intensidad <= 2.9)
+    {
+        estacion.nivel_alerta = " VERDE ";
+    }
+    else if (estacion.promedio_intensidad >= 3.0 && estacion.promedio_intensidad <= 5.9)
+    {
+        estacion.nivel_alerta = " AMARILLA ";
+    }
+    else if (estacion.promedio_intensidad >= 6.0 && estacion.promedio_intensidad <= 7.9)
+    {
+        estacion.nivel_alerta = " NARANJA ";
+    }else if (estacion.promedio_intensidad >= 8.0 )
+    {
+        estacion.nivel_alerta = " ROJA ";
+    }
+    else
+    {
+        cout << " Alerta desconocido, niveles no identificados " << endl;
+    }
+    
+};
