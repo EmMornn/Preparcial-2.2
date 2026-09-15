@@ -18,8 +18,10 @@ void registrarElementos(Elemento &elementos)
     cout << "Ingrese el codigo del elemento: ";
     cin >> elementos.codigo;
     cout << endl;
+    cin.ignore();
+
     cout << "Ingrese el nombre del elemento: ";
-    cin >> elementos.nombre;
+    getline(cin, elementos.nombre);
     cout << endl;
     cout << "Ingrese la longitud del elemento: ";
     cin >> elementos.longitud;
@@ -57,26 +59,27 @@ void determinarSeguridad(Elemento &elemento)
     if (elemento.factor_utilizacion >= 0.00 && elemento.factor_utilizacion < 0.50)
     {
         cout << "Estado: SEGURO" << endl;
-        elemento.estado_seguridad == "Seguro";
+        elemento.estado_seguridad = "Seguro";
     }
     else if (elemento.factor_utilizacion >= 0.50 && elemento.factor_utilizacion < 0.80)
     {
         cout << "Estado: PRECAUCION" << endl;
-        elemento.estado_seguridad == "Precaucion";
+        elemento.estado_seguridad = "Precaucion";
     }
     else if (elemento.factor_utilizacion >= 0.80 && elemento.factor_utilizacion < 1.00)
     {
         cout << "Estado: RIESGO" << endl;
-        elemento.estado_seguridad == "Riesgo";
+        elemento.estado_seguridad = "Riesgo";
     }
     else if (elemento.factor_utilizacion >= 1.00)
     {
         cout << "Estado: SOBRECARGA" << endl;
-        elemento.estado_seguridad == "Sobrecarga";
+        elemento.estado_seguridad = "Sobrecarga";
     }
     else
     {
         cout << "Valor no identificado" << endl;
+        elemento.estado_seguridad == "Sobrecarga";
     }
 };
 
@@ -128,19 +131,19 @@ void generarInforme(Elemento elementos[], int cantidad)
         cout << "Factor de Utilizacion: " << elementos[i].factor_utilizacion << endl;
         cout << "Estado de Seguridad: " << elementos[i].estado_seguridad << endl;
 
-        if (elementos[i].estado_seguridad == "SEGURO")
+        if (elementos[i].estado_seguridad == "Seguro")
         {
             seguro++;
         }
-        else if (elementos[i].estado_seguridad == "PRECAUCION")
+        else if (elementos[i].estado_seguridad == "Precaucion")
         {
             precaucion++;
         }
-        else if (elementos[i].estado_seguridad == "RIESGO")
+        else if (elementos[i].estado_seguridad == "Riesgo")
         {
             riesgo++;
         }
-        else if (elementos[i].estado_seguridad == "SOBRECARGA")
+        else if (elementos[i].estado_seguridad == "Sobrecarga")
         {
             sobrecarga++;
         }
@@ -202,6 +205,8 @@ int main()
     cout << "Factor de Utilizacion: " << masCritico->factor_utilizacion << endl;
     cout << "Estado de Seguridad: " << masCritico->estado_seguridad << endl;
 
+    system("pause");
+
     float porcentaje;
     cout << endl;
     cout << "Simulacion de Aumento de las Cargas " << endl;
@@ -234,8 +239,9 @@ int main()
     cout << "Factor de Utilizacion: " << masCritico->factor_utilizacion << endl;
     cout << "Estado de Seguridad: " << masCritico->estado_seguridad << endl;
 
+    system("pause");
 
     generarInforme(elementos, n);
-    
+
     return 0;
 }
